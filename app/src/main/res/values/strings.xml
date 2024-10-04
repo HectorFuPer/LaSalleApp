@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LaSalleApp</string>
+    <string name="welcome_text">Bienvenido</string>
+    <string name="news">Noticias</string>
 </resources>
