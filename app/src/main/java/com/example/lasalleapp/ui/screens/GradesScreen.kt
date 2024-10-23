@@ -24,6 +24,11 @@ import com.example.lasalleapp.ui.components.GradesModal
 fun GradesScreen(alumno: Alumno, innerPadding: PaddingValues) {
     var selectedMateria by remember { mutableStateOf<Materia?>(null) }
     var showSemestresDialog by remember { mutableStateOf(false) }
+    val promedioSemestre = if (alumno.materias.isNotEmpty()) {
+        String.format("%.2f", alumno.materias.map { it.promedio }.average())
+    } else {
+        "0.00"
+    }
 
     Column(
         modifier = Modifier
@@ -67,9 +72,18 @@ fun GradesScreen(alumno: Alumno, innerPadding: PaddingValues) {
                 // Título de las Materias
                 Text(
                     text = "Materias ${alumno.semestre}:",
-                    style = MaterialTheme.typography.titleLarge.copy(fontSize = 24.sp, fontWeight = FontWeight.SemiBold),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color(0xFF757575),
                     modifier = Modifier.padding(bottom = 8.dp)
+                )
+
+                Text(
+                    text = "Promedio Final: $promedioSemestre",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color(0xFF757575),
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
 
